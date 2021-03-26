@@ -11,6 +11,7 @@ interface FileInputProps {
   onChange: (uri: string) => void;
   label?: string;
   error?: string;
+  name?: string;
 }
 
 const FileInputContainer = styled.div`
@@ -32,9 +33,9 @@ const FileInputContainer = styled.div`
   }
 `;
 
-const FileInput: React.FC<FileInputProps> = ({ value, onChange, error, label }) => {
+const FileInput: React.FC<FileInputProps> = ({ value, onChange, error, label, name }) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    const file = acceptedFiles[0];
+    const [file] = acceptedFiles;
 
     if (!file) return;
 
@@ -49,13 +50,14 @@ const FileInput: React.FC<FileInputProps> = ({ value, onChange, error, label }) 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: 'image/jpeg, image/png',
+    multiple: false,
   });
 
   return (
     <FileInputContainer>
-      {label ? <InputLabel>{label}</InputLabel> : null}
+      {label ? <InputLabel htmlFor={name}>{label}</InputLabel> : null}
       <div className="file-input-wrapper" {...getRootProps()}>
-        <input {...getInputProps()} />
+        <input id={name} {...getInputProps()} />
         <div className="content">
           {!value ? (
             <>
