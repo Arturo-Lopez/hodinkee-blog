@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint ./src/ --ext .ts,.tsx",
+    "prettier": "prettier --write src/",
     "lint:fix": "eslint --fix --ext .ts,.tsx .",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "pre:commit": "yarn prettier && yarn lint"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
@@ -17,6 +19,7 @@
     "husky": "^5.2.0",
     "next": "^10.0.9",
     "normalize.css": "^8.0.1",
+    "prettier": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-dropzone": "^11.3.1",
