@@ -40,14 +40,23 @@ const useNewsApi = ({ newApiResponse }: useNewsApiArgs) => {
     const data = await fetchApi(newFrom, newTo, NEXT_PUBLIC_NEWS_API_KEY);
 
     setHasMore(data.totalResults > 0);
-    setArticles((prev) => [...prev, ...data.articles]);
+
+    if (data.articles.length > 0) {
+      setArticles((prev) => [...prev, ...data.articles]);
+    }
 
     setLoading(false);
   };
 
   useEffect(() => {
     getPosts().then((localPosts) => {
-      setArticles([...localPosts, ...newApiResponse.articles]);
+      let allArticles = [];
+
+      if (newApiResponse.articles.length > 0) {
+        allArticles = [...newApiResponse.articles];
+      }
+
+      setArticles([...localPosts, ...allArticles]);
     });
   }, []);
 
