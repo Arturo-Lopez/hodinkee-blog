@@ -58,23 +58,26 @@ const UpdatePostModal: React.FC<UpdatePostProps> = ({ onClose, open, post }) => 
       <FormCardContainer>
         <h2>Edit Post</h2>
         <form onSubmit={handleSubmit}>
-          <TextInput value={values.title} onChange={handleChange('title')} label="Title" error={errors.title} />
+          <TextInput value={values.title} onChange={handleChange} name="title" label="Title" error={errors.title} />
           <FileInput
             value={values.urlToImage}
             onChange={handleChange('urlToImage')}
+            name="urlToImage"
             label="Image"
             error={errors.urlToImage}
           />
-          <TextInput value={values.author} onChange={handleChange('author')} label="Author" error={errors.author} />
+          <TextInput value={values.author} onChange={handleChange} name="author" label="Author" error={errors.author} />
           <TextInput
             value={values.description}
-            onChange={handleChange('description')}
+            onChange={handleChange}
+            name="description"
             label="Description"
             error={errors.description}
           />
           <TextAreaInput
             value={values.content}
-            onChange={handleChange('content')}
+            onChange={handleChange}
+            name="content"
             label="Content"
             error={errors.content}
           />

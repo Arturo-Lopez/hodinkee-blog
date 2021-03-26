@@ -14,6 +14,14 @@ const NavBarContainer = styled.header`
     justify-content: space-between;
     align-items: center;
   }
+
+  @media (max-width: 360px) {
+    padding: 0 16px;
+
+    button {
+      padding: 0 1.5em;
+    }
+  }
 `;
 
 const NavBar: React.FC = ({ children }) => (

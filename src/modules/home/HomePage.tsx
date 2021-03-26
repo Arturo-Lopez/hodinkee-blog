@@ -69,10 +69,9 @@ const HomePage = ({ newApiResponse }: HomeProps) => {
   const HomeContent = () => (
     <div className="home-content">
       {bodyArticles.map((article, idx) => (
-        <>
-          <Divider key={`divider-${article.title}`} />
+        <div key={`article-${article.title}`}>
+          <Divider />
           <PostCard
-            key={`article-${article.title}`}
             imgUrl={article.urlToImage}
             title={article.title}
             description={article.description}
@@ -81,7 +80,7 @@ const HomePage = ({ newApiResponse }: HomeProps) => {
             url={validatePostUrl(article?.url)}
             ref={idx + 1 === bodyArticles.length ? lastPostRef : undefined}
           />
-        </>
+        </div>
       ))}
       {loading ? <h2 className="title">Loading</h2> : null}
     </div>
@@ -90,21 +89,19 @@ const HomePage = ({ newApiResponse }: HomeProps) => {
   return (
     <HomeContainer>
       <NavBar>
-        <Image src="/img/logo.svg" layout="fixed" width={168.82} height={20} />
+        <Image src="/img/logo.svg" alt="logo" layout="fixed" width={168.82} height={20} />
         <Button onClick={() => push('/manage')} simple>
           Manage posts
         </Button>
       </NavBar>
-      <div className="wrapper">
-        {articles && articles.length > 0 ? (
-          <>
-            <HomeHeader />
-            <HomeContent />
-          </>
-        ) : (
-          <h2 className="title">There&apos;s no articles!</h2>
-        )}
-      </div>
+      {articles && articles.length > 0 ? (
+        <div className="wrapper">
+          <HomeHeader />
+          <HomeContent />
+        </div>
+      ) : (
+        <h2 className="title">There&apos;s no articles!</h2>
+      )}
     </HomeContainer>
   );
 };

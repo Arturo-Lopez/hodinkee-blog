@@ -9,12 +9,10 @@ export default styled.div`
     max-width: 1200px;
   }
 
-  .manage-header {
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin: 1em 0;
-    }
+  .manage-header h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 1em 0;
   }
 
   .post-item {
@@ -43,5 +41,11 @@ export default styled.div`
     text-align: center;
     font-weight: 400;
     font-family: var(--font-sans-serif);
+  }
+
+  @media (max-width: 480px) {
+    .manage-header h2 {
+      font-size: 2rem;
+    }
   }
 `;

@@ -48,7 +48,7 @@ const PostCardContainer = styled.a`
 
     &__meta {
       text-transform: uppercase;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-dimmed);
       margin: 8px 0 0;
     }

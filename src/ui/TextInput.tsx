@@ -19,10 +19,10 @@ const TextInputContainer = styled.div`
   }
 `;
 
-const TextInput = ({ error, label, ...props }: TextInputProps) => (
+const TextInput = ({ error, label, name, ...props }: TextInputProps) => (
   <TextInputContainer>
-    {label ? <InputLabel>{label}</InputLabel> : null}
-    <input {...props} />
+    {label ? <InputLabel htmlFor={name}>{label}</InputLabel> : null}
+    <input id={name} {...props} />
     {error ? <InputError>{error}</InputError> : null}
   </TextInputContainer>
 );

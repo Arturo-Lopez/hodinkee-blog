@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { Button, Divider, NavBar, PostCard } from '@ui';
 import usePostStorage, { Post } from '@hooks/usePostsStorage';
 
+import { formatPostPublishedAt } from 'src/utils/time';
+
 import ManagePostsContainer from './ManagePostsContainer';
 import CreatePostModal from './CreatePostModal';
 import UpdatePostModal from './UpdatePostModal';
@@ -44,16 +46,16 @@ const ManagePage = () => {
             title={post.title}
             author={post.author}
             imgUrl={post.urlToImage}
-            publishedAt={post.publishedAt}
+            publishedAt={formatPostPublishedAt(post.publishedAt)}
             url={post.title}
             description=""
             ref={undefined}
           />
           <div className="post-item__actions">
-            <button onClick={() => openUpdatePostModal(post)} type="button">
+            <button name="edit" onClick={() => openUpdatePostModal(post)} type="button">
               <Edit2 size={24} />
             </button>
-            <button onClick={() => openDeletePostModal(post)} type="button">
+            <button name="delete" onClick={() => openDeletePostModal(post)} type="button">
               <Trash size={24} />
             </button>
             <Link href={`/${post.title}`}>
@@ -70,10 +72,12 @@ const ManagePage = () => {
   return (
     <ManagePostsContainer>
       <NavBar>
-        <Button onClick={() => push('/')} simple>
+        <Button name="back" onClick={() => push('/')} simple>
           Back to home
         </Button>
-        <Button onClick={openAddPostModal}>Add post</Button>
+        <Button name="add post" onClick={openAddPostModal}>
+          Add post
+        </Button>
       </NavBar>
       <div className="wrapper">
         <div className="manage-header">
